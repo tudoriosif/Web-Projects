@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graph Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="logo-container">
+        <h1>Graph Generator</h1>
+    </header>
+    <main class="form-container">
+       <form action="" class="form">
+            <input type="text" name="nodeName" id="nodes" placeholder="Add nodes names (eg: [A, B, C, D])">
+            <input type="text" name="connections" id="connections" placeholder="Add nodes connections (eg: [A -> B, B -> C, C -> D])">
+        </form>
+    </main>
+    <footer class="start-footer">
+        <button type="submit" onClick="startGraph()" class="start-button"
+        id="start-button">START</button>
+        <div class="refresh">
+            <button type="submit" onClick ="refreshValue()" id="refresh-button">
+                <img src="assets/refresh.svg" alt="refresh icon">
+            </button>
+        </div>
+    </footer>
+    <aside class="links">
+        <a href="https://www.facebook.com/tudor.iosif/" target="_blank">
+            <img id="facebook" src="assets/facebook.svg"  alt="facebook icon">
+        </a>
+        <a href="https://github.com/tudoriosif" target="_blank">
+            <img src="assets/git.svg" alt="git icon">
+        </a>
+        <a href="https://www.linkedin.com/in/tudor-andrei-iosif-7a53851b9/" target="_blank">
+            <img src="assets/linkedin.svg" id="linkedin" alt="linkedin icon">
+        </a>
+    </aside>
+    <script src="main.js"></script>
+</body>
+</html>
