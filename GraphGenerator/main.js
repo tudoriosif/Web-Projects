@@ -1,12 +1,18 @@
 const startBtn = document.getElementById("start-button");
 const refresh = document.getElementsByClassName("details-container")[0];
+const dfsbfsShow = document.getElementsByClassName("parse-container")[0];
 let conContainer = document.getElementsByClassName("con-container")[0];
 let nodeContainer = document.getElementsByClassName("node-container")[0];
 let nodesName = document.getElementById("nodes");
 let connectionsName = document.getElementById("connections");
 
 function refreshValue() {
-    refresh.style.display = "none"; 
+    refresh.style.opacity = "0";
+    dfsbfsShow.style.opacity = "0";
+    setTimeout(()=>{
+        refresh.style.display = "none";
+        dfsbfsShow.style.display = "none";
+    },450);
 
     Array.from(
         document.getElementsByClassName("con-container")[0]
@@ -58,15 +64,30 @@ function parseVars(nodesToParse, connecsToParse) {
                 });
                 // .reduce((obj, item) => 
                 // (obj[Object.keys(item)[0]] = Object.values(item)[0], obj), {});
-    
-    console.log(nodes);
-    console.log(conns);
-    showDetails(nodes, conns);
+    let pp = true;
+
+    conns.forEach(obj => {
+        if(nodes.includes(Object.values(obj)[0]) === false){
+            pp = false;
+        }
+        return;
+    });
+
+    if(pp === false){
+        let warningDisplay = document.getElementsByClassName("problem-section")[0];
+        warningDisplay.style.opacity = "1";
+        setTimeout(()=>{
+            refreshValue(); 
+            warningDisplay.style.opacity = "0";
+        }, 5000);
+    }else{
+        console.log(nodes);
+        console.log(conns);
+        showDetails(nodes, conns);
+    }
 }
 
 function showDetails(nodes, conns){
-    refresh.style.display = "flex";
-
     nodes.forEach(item => {
         let node = document.createElement("span");
         node.appendChild(document.createTextNode(item));
@@ -82,4 +103,12 @@ function showDetails(nodes, conns){
         conContainer.appendChild(con);
         return;
     })
+    
+    refresh.style.display = "flex";
+    dfsbfsShow.style.display = "flex";
+    setTimeout(()=>{
+        refresh.style.opacity = "1";
+        dfsbfsShow.style.opacity = "1";
+    },450);
+    
 }

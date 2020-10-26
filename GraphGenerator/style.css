@@ -35,6 +35,10 @@ body {
 }
 /* ------- Form */
 
+.form-container{
+    position: relative;
+}
+
 .form{
     display: flex;
     flex-wrap: wrap;
@@ -54,6 +58,28 @@ body {
     border-radius: 25px;
     font-family: 'Roboto', sans-serif;
     color: rgba(255,255,255, 1);
+}
+
+.problem-section{
+    position: absolute;
+    top: 50%;
+    left: calc(50% + max(350px, 30%)/2 + 30px);
+    transform: translateY(-50%); 
+    width: max-content;
+    height: max-content; 
+    background: rgba(0, 0, 0, 0.5);
+    text-align: center;
+    color: #FFF;
+    opacity: 0;
+    transition: opacity 2s ease-in;
+}
+.problem-section img{
+    width: 24px;
+    height: auto;
+}
+.problem-section p{
+    font-size: clamp(12px, 1rem, 1.2vw);
+    font-family: 'Roboto', sans-serif;
 }
 
 /* --------- Start Footer */
@@ -125,7 +151,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    text-align:center;
+    text-align:center; 
 }
 .links a img {
     width: max(28px, 2vw);
@@ -133,7 +159,6 @@ body {
     margin-bottom: 30px;
     transform: rotateZ(0deg);
     transition: transform 0.3s ease-in;
-
 }
 
 .links a img:hover{
@@ -158,7 +183,10 @@ body {
     flex-direction: row;
     justify-content: space-evenly;
     padding-top: 5vh;
+    opacity: 0;
+    transition: opacity .4s linear;
 }
+
 
 .details-container section{
     width: 450px;
@@ -185,13 +213,74 @@ body {
     padding: 15px 0px;
 }
 
+/* -------- BFS and DFS */
+.parse-container{
+    width: 100%;
+    height: auto;
+    display: none;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+    opacity: 0;
+    transition: opacity .4s linear;
+}
+
+.parse-container section {
+    text-align: center;
+    width: 450px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.bfstext, .dfstext{
+    font-family: 'Roboto', sans-serif;
+    font-size: clamp(36px, 2.75rem, 2.5vw);
+    color: #FFF;
+    text-shadow: 1px 1px 2px #000;
+    padding: 0 0 15px 0;
+}
+
+.parse-container section span {
+    font-family: 'Roboto', sans-serif;
+    font-size: clamp(24px, 2.25rem, 2.5vw);
+    color: #FFF;
+    text-shadow: 1px 1px 2px #000;
+    margin: 15px 0px;
+}
 
 /*  --------- Responsive */
 @media (max-width: 1000px) {
-    .details-container{
+    .details-container, .parse-container{
         flex-direction: row;
     }
-    .node-container, .con-container {
+    .node-container, .con-container, .bfs-container, .dfs-container {
         width: 100%;
+    }
+}
+
+@media (max-width: 540px) {
+    .links{
+        top: 1.5vh;
+        width: auto;
+        height: max(28px, 2%)o;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: center;
+    }
+    .links a img {
+        margin-right: 30px;
+    }
+    #linkedin{
+        margin-right: 0;
+    }
+}
+@media (max-width: 740px){
+    .problem-section{
+        left: 50%;
+        transform: translateX(-50%);
+        margin-top: 15vh;
     }
 }

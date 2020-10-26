@@ -15,6 +15,12 @@
             <input type="text" name="nodeName" id="nodes" placeholder="Add nodes names (eg: [A, B, C, D])">
             <input type="text" name="connections" id="connections" placeholder="Add nodes connections (eg: [A -> B, B -> C, C -> D])">
         </form>
+        <div class="problem-section">
+            <img src="assets/alert.svg" alt="alert node conn match">
+            <p>
+                Your nodes<br> and <br> connections<br> must match!
+            </p>
+        </div>
     </main>
     <footer class="start-footer">
         <button type="submit" onClick="startGraph()" class="start-button"
@@ -42,9 +48,18 @@
         </section>
         <section class="con-container">
             <h2 class="nodetext">Connections:</h2>
-            
         </section>
-        <script src="main.js"></script>
     </div>
+    <div class="parse-container">
+        <section class="bfs-container">
+            <h2 class="bfstext">BFS:</h2>
+            <span>A, B, C, D, E</span>
+        </section>
+        <section class="dfs-container">
+            <h2 class="dfstext">DFS:</h2>
+            <span>C, D, E ,F ,H</span>
+        </section>
+    </div>
+    <script src="main.js"></script>
 </body>
 </html>
