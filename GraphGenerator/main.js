@@ -1,33 +1,18 @@
 const startBtn = document.getElementById("start-button");
-const refresh = document.getElementsByClassName("details-container")[0];
+const detailShow = document.getElementsByClassName("details-container")[0];
 const dfsbfsShow = document.getElementsByClassName("parse-container")[0];
+
+// Variabels for display nodes
 let conContainer = document.getElementsByClassName("con-container")[0];
 let nodeContainer = document.getElementsByClassName("node-container")[0];
 let nodesName = document.getElementById("nodes");
 let connectionsName = document.getElementById("connections");
+let bfsContainer = document.getElementsByClassName("bfs-container")[0];
+let dfsContainer = document.getElementsByClassName("dfs-container")[0];
 
-function refreshValue() {
-    refresh.style.opacity = "0";
-    dfsbfsShow.style.opacity = "0";
-    setTimeout(()=>{
-        refresh.style.display = "none";
-        dfsbfsShow.style.display = "none";
-    },450);
 
-    Array.from(
-        document.getElementsByClassName("con-container")[0]
-        .getElementsByTagName("span"))
-        .forEach(el => el.remove());
-        
-    Array.from(
-        document.getElementsByClassName("node-container")[0].getElementsByTagName("span"))
-        .forEach(el => el.remove());
 
-    nodesName.value = '';
-    connectionsName.value = '';
-    startBtn.classList.remove("correct", "wrong");
-
-}
+// Main functionality
 
 function startGraph() {
     nodesName.value = document.getElementById("nodes").value;
@@ -52,6 +37,29 @@ function startGraph() {
 
 }
 
+function refreshValue() {
+    detailShow.style.opacity = "0";
+    dfsbfsShow.style.opacity = "0";
+    setTimeout(()=>{
+        detailShow.style.display = "none";
+        dfsbfsShow.style.display = "none";
+    },450);
+
+    Array.from(
+        document.getElementsByClassName("con-container")[0]
+        .getElementsByTagName("span"))
+        .forEach(el => el.remove());
+        
+    Array.from(
+        document.getElementsByClassName("node-container")[0].getElementsByTagName("span"))
+        .forEach(el => el.remove());
+
+    nodesName.value = '';
+    connectionsName.value = '';
+    startBtn.classList.remove("correct", "wrong");
+
+}
+
 function parseVars(nodesToParse, connecsToParse) {
     let parseNReg = /(\w+)/gi;
     let parseCReg = /(\w+\s*\-\>\s*\w+)/gi;
@@ -60,20 +68,21 @@ function parseVars(nodesToParse, connecsToParse) {
                 .match(parseCReg)
                 .map(item => {
                     let parse = item.match(parseNReg);
-                     return {[parse[0]] : parse[1]};
+                     return [parse[0], parse[1]];
                 });
-                // .reduce((obj, item) => 
-                // (obj[Object.keys(item)[0]] = Object.values(item)[0], obj), {});
+
     let pp = true;
 
-    conns.forEach(obj => {
-        if(nodes.includes(Object.values(obj)[0]) === false){
+    conns.forEach(con => {
+        // Checking conns
+        if(nodes.includes(con[0]) === false || nodes.includes(con[1]) === false){
             pp = false;
         }
         return;
     });
 
     if(pp === false){
+        // If nodes and connections doesn't match warning message
         let warningDisplay = document.getElementsByClassName("problem-section")[0];
         warningDisplay.style.opacity = "1";
         setTimeout(()=>{
@@ -81,14 +90,19 @@ function parseVars(nodesToParse, connecsToParse) {
             warningDisplay.style.opacity = "0";
         }, 5000);
     }else{
-        console.log(nodes);
-        console.log(conns);
+        //Going further
         showDetails(nodes, conns);
     }
 }
 
 function showDetails(nodes, conns){
+    const adjancencyList = new Map();
+
     nodes.forEach(item => {
+        // Adding nodes to adjancencyList
+        addNode(item, adjancencyList);
+
+        // Showing the nodes
         let node = document.createElement("span");
         node.appendChild(document.createTextNode(item));
         nodeContainer.appendChild(node);
@@ -96,19 +110,100 @@ function showDetails(nodes, conns){
     });
 
     conns.forEach(item => {
-        let startPoint = Object.keys(item)[0];
-        let endPoint = Object.values(item)[0];
+        // Adding connections to adjancencyList
+        addLink(...item, adjancencyList);
+
+        // Showing connections
+        let startPoint = item[0];
+        let endPoint = item[1];
         let con = document.createElement("span");
         con.appendChild(document.createTextNode(startPoint + " \-\> " + endPoint));
         conContainer.appendChild(con);
         return;
     })
-    
-    refresh.style.display = "flex";
+
+    // Finding BFS and DFS
+    const bfs = BFS(adjancencyList, nodes[0]);
+    const dfs = DFS(adjancencyList, nodes[0], new Set());
+
+    // Displaying BFS and DFS
+    bdfsDisplay(bfs, dfs);
+
+
+    detailShow.style.display = "flex";
     dfsbfsShow.style.display = "flex";
     setTimeout(()=>{
-        refresh.style.opacity = "1";
+        detailShow.style.opacity = "1";
         dfsbfsShow.style.opacity = "1";
     },450);
     
+}
+
+function bdfsDisplay(bfs, dfs){
+    let bfsS = "";
+    bfs.forEach(item => {
+        bfsS = bfsS + item + ', ';
+        return;
+    })
+    bfsS = bfsS.slice(0, bfsS.length - 2);
+    console.log(bfsS);    
+
+    let dfsS = "";
+    dfs.forEach(item => {
+        dfsS = dfsS + item + ', ';
+        return;
+    })
+    dfsS = dfsS.slice(0, dfsS.length - 2);
+    console.log(dfsS);    
+
+    let bfsSpan = document.createElement("span");
+    bfsSpan.appendChild(document.createTextNode(bfsS));
+    bfsContainer.appendChild(bfsSpan);
+
+    
+    let dfsSpan = document.createElement("span");
+    dfsSpan.appendChild(document.createTextNode(dfsS));
+    dfsContainer.appendChild(dfsSpan);
+}
+
+// Calculation
+function addNode(node, adjancencyList){
+    adjancencyList.set(node, []);
+}
+
+function addLink(nodeStart, nodeEnd, adjancencyList){
+    adjancencyList.get(nodeStart).push(nodeEnd);
+}
+
+
+function BFS(adjancencyList, nodeStart){
+    const queue = [nodeStart];
+    const visited = new Set();
+    visited.add(nodeStart);
+
+    while(queue.length > 0) {
+        const currentNode = queue.shift(); // getting next node
+        const nextNodes = adjancencyList.get(currentNode); //finding posibilities of nextNodes
+
+        for(const nextNode of nextNodes){
+            if(!visited.has(nextNode)){
+                visited.add(nextNode);
+                queue.push(nextNode);
+            }
+        }
+    }
+    return Array.from(visited);
+}
+
+function DFS(adjancencyList, nodeStart, visited = new Set()){
+    visited.add(nodeStart);
+
+    const nextNodes = adjancencyList.get(nodeStart);
+
+    for(const nextNode of nextNodes) {
+        if(!visited.has(nextNode)){
+            DFS(adjancencyList, nextNode, visited);
+        }
+    }
+    return Array.from(visited);
 }
