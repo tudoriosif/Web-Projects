@@ -10,6 +10,11 @@ let connectionsName = document.getElementById("connections");
 let bfsContainer = document.getElementsByClassName("bfs-container")[0];
 let dfsContainer = document.getElementsByClassName("dfs-container")[0];
 
+// Canvas Variables
+const canvas = document.querySelector("canvas");
+canvasSetup();
+console.log(canvas);
+
 
 
 // Main functionality
@@ -206,4 +211,23 @@ function DFS(adjancencyList, nodeStart, visited = new Set()){
         }
     }
     return Array.from(visited);
+}
+
+
+// Canvas drawing
+function canvasSetup() {
+    console.log(innerWidth)
+    
+    canvas.width = document.querySelector("html").offsetWidth - (1209 -1192);
+    canvas.height = innerHeight;
+    const context = canvas.getContext('2d');
+    const nodeIMG = new Image();
+    
+    nodeIMG.onload = function() {
+        context.drawImage(nodeIMG, 5, 5)
+    }
+
+    nodeIMG.src = 'assets/node.svg';
+    context.fillRect(20, 20, 50, 50);
+    
 }

@@ -11,9 +11,12 @@
 
 html {
     min-height: 100%;
+    width: 100%;
 }
 
 body {
+    min-height: 100%;
+    width: 100%;
     background: rgb(15,32,39);
     background: linear-gradient(45deg, rgba(15,32,39,1) 0%, rgba(32,58,67,1) 50%, rgba(44,83,100,1) 100%);
     background-position: center center;
@@ -248,6 +251,15 @@ body {
     color: #FFF;
     text-shadow: 1px 1px 2px #000;
     margin: 15px 0px;
+}
+
+/* ---------- Canvas */
+canvas{
+    background-color: white;
+    margin-top: 10vh;
+    padding: 0;
+    display: block;
+    border: none;
 }
 
 /*  --------- Responsive */
