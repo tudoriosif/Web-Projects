@@ -256,10 +256,11 @@ body {
 /* ---------- Canvas */
 canvas{
     background-color: white;
-    margin-top: 10vh;
     padding: 0;
     display: block;
     border: none;
+
+    /* display: none; */
 }
 
 /*  --------- Responsive */

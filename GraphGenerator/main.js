@@ -12,10 +12,6 @@ let dfsContainer = document.getElementsByClassName("dfs-container")[0];
 
 // Canvas Variables
 const canvas = document.querySelector("canvas");
-canvasSetup();
-console.log(canvas);
-
-
 
 // Main functionality
 
@@ -49,6 +45,8 @@ function refreshValue() {
         detailShow.style.display = "none";
         dfsbfsShow.style.display = "none";
     },450);
+
+    canvasDelete();
 
     Array.from(
         document.getElementsByClassName("con-container")[0]
@@ -131,10 +129,6 @@ function showDetails(nodes, conns){
     const bfs = BFS(adjancencyList, nodes[0]);
     const dfs = DFS(adjancencyList, nodes[0], new Set());
 
-    // Displaying BFS and DFS
-    bdfsDisplay(bfs, dfs);
-
-
     detailShow.style.display = "flex";
     dfsbfsShow.style.display = "flex";
     setTimeout(()=>{
@@ -142,6 +136,7 @@ function showDetails(nodes, conns){
         dfsbfsShow.style.opacity = "1";
     },450);
     
+    canvasSetup(adjancencyList, nodes, conns);
 }
 
 function bdfsDisplay(bfs, dfs){
@@ -215,19 +210,62 @@ function DFS(adjancencyList, nodeStart, visited = new Set()){
 
 
 // Canvas drawing
-function canvasSetup() {
-    console.log(innerWidth)
-    
-    canvas.width = document.querySelector("html").offsetWidth - (1209 -1192);
+function canvasSetup( adjancencyList, nodes, conns) {
+    canvas.width = document.querySelector("html").offsetWidth;
     canvas.height = innerHeight;
     const context = canvas.getContext('2d');
     const nodeIMG = new Image();
+    let cwid = canvas.width;
+    let chei = canvas.height;
+
+    
+    console.log(conns);
+    //Sort the nodes after numbers of connections
+    nodes.sort((a, b) => adjancencyList.get(b).length - adjancencyList.get(a).length);
     
     nodeIMG.onload = function() {
-        context.drawImage(nodeIMG, 5, 5)
+        const imgScale = (cwid > 1500) ? 150 : cwid/10;
+        const centerImgX = imgScale/2;
+        let countNodes = 0;
+
+        context.font = `${imgScale/5}px Roboto`;
+        let textString = nodes[countNodes];
+        let textWidth = context.measureText(textString).width;
+
+        const stepWidth = cwid / 10;
+        const stepHeight = chei / 20;
+
+        //Drawing middle node
+        context.drawImage(nodeIMG, cwid/2 - centerImgX , stepHeight, imgScale, imgScale);
+        context.fillText(textString, cwid/2 - textWidth/2, stepHeight + centerImgX);
+        for(countNodes = 1; countNodes < nodes.length ; countNodes++){ // countNodes
+            textString = nodes[countNodes];
+            textWidth = context.measureText(textString).width
+            for(let col = 0 ; col < 3; col++){
+                context.drawImage(
+                    nodeIMG, 
+                    2*stepWidth*col + 30,
+                    stepHeight * (countNodes+1) + imgScale * countNodes, 
+                    imgScale, imgScale
+                    );
+                context.fillText(
+                    textString,
+                    2*stepWidth*col + 30 + imgScale/2 - textWidth/2,
+                    stepHeight*(countNodes+1) + centerImgX + imgScale * countNodes
+                    );
+            }
+
+
+        }
+        
+        // Este mai ok sa le luam pe linii, primul nod fiind cel cu cele mai multe legaturi, dupa legaturile si tot asa.
     }
 
     nodeIMG.src = 'assets/node.svg';
-    context.fillRect(20, 20, 50, 50);
-    
+}
+
+function canvasDelete() {
+    canvas.width = 0;
+    canvas.height = 0;
+    canvas.style.display = "none";
 }
