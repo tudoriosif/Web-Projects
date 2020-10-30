@@ -129,6 +129,8 @@ function showDetails(nodes, conns){
     const bfs = BFS(adjancencyList, nodes[0]);
     const dfs = DFS(adjancencyList, nodes[0], new Set());
 
+    bdfsDisplay(bfs, dfs);
+
     detailShow.style.display = "flex";
     dfsbfsShow.style.display = "flex";
     setTimeout(()=>{
