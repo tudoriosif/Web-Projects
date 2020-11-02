@@ -125,7 +125,9 @@ function showDetails(nodes, conns){
         return;
     })
 
-    // Finding BFS and DFS
+    // Finding BFS and DFS starting from node with most connections
+    nodes.sort((a, b) => adjancencyList.get(b).length - adjancencyList.get(a).length)[0];
+        
     const bfs = BFS(adjancencyList, nodes[0]);
     const dfs = DFS(adjancencyList, nodes[0], new Set());
 
