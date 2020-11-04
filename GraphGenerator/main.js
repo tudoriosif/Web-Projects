@@ -127,7 +127,7 @@ function showDetails(nodes, conns){
 
     // Finding BFS and DFS starting from node with most connections
     nodes.sort((a, b) => adjancencyList.get(b).length - adjancencyList.get(a).length)[0];
-        
+
     const bfs = BFS(adjancencyList, nodes[0]);
     const dfs = DFS(adjancencyList, nodes[0], new Set());
 
@@ -140,7 +140,7 @@ function showDetails(nodes, conns){
         dfsbfsShow.style.opacity = "1";
     },450);
     
-    canvasSetup(adjancencyList, nodes, conns);
+    canvasSetup(adjancencyList, nodes, conns, bfs);
 }
 
 function bdfsDisplay(bfs, dfs){
@@ -214,7 +214,7 @@ function DFS(adjancencyList, nodeStart, visited = new Set()){
 
 
 // Canvas drawing
-function canvasSetup( adjancencyList, nodes, conns) {
+function canvasSetup( adjancencyList, nodes, conns, bfs) {
     canvas.width = document.querySelector("html").offsetWidth;
     canvas.height = innerHeight;
     const context = canvas.getContext('2d');
@@ -222,13 +222,10 @@ function canvasSetup( adjancencyList, nodes, conns) {
     let cwid = canvas.width;
     let chei = canvas.height;
 
-    
-    console.log(conns);
-    //Sort the nodes after numbers of connections
-    nodes.sort((a, b) => adjancencyList.get(b).length - adjancencyList.get(a).length);
+    console.log(adjancencyList);
     
     nodeIMG.onload = function() {
-        const imgScale = (cwid > 1500) ? 150 : cwid/10;
+        const imgScale = (cwid > 1500) ? ((nodes.length * 200 < chei) ? 150 : chei/(nodes.length + 3)) : cwid/(nodes.length + 1.5);
         const centerImgX = imgScale/2;
         let countNodes = 0;
 
@@ -242,27 +239,39 @@ function canvasSetup( adjancencyList, nodes, conns) {
         //Drawing middle node
         context.drawImage(nodeIMG, cwid/2 - centerImgX , stepHeight, imgScale, imgScale);
         context.fillText(textString, cwid/2 - textWidth/2, stepHeight + centerImgX);
-        for(countNodes = 1; countNodes < nodes.length ; countNodes++){ // countNodes
-            textString = nodes[countNodes];
-            textWidth = context.measureText(textString).width
-            for(let col = 0 ; col < 3; col++){
-                context.drawImage(
-                    nodeIMG, 
-                    2*stepWidth*col + 30,
-                    stepHeight * (countNodes+1) + imgScale * countNodes, 
-                    imgScale, imgScale
-                    );
-                context.fillText(
-                    textString,
-                    2*stepWidth*col + 30 + imgScale/2 - textWidth/2,
-                    stepHeight*(countNodes+1) + centerImgX + imgScale * countNodes
-                    );
+
+        let visitedNodes = new Set();
+        visitedNodes.add(nodes[countNodes]);
+
+        let flag = false;
+        console.log(bfs)
+        while(visitedNodes.size !== nodes.length && flag != true) {
+            let values = bfs.length > 0 ? adjancencyList.get(bfs[0]) : flag = true;
+            console.log('Bfs[0]',bfs[0]);
+            console.log('Values:', values);
+            for(let i = 0; i < values.length; i++){
+                if(!visitedNodes.has(values[i])){
+                    console.log(values[i]);
+                    visitedNodes.add(values[i]);
+                    textString = values[i];
+                    textWidth = context.measureText(textString).width
+                    context.drawImage(
+                        nodeIMG, 
+                        2*stepWidth*i + 30,
+                        stepHeight * (i+1) + imgScale * i, 
+                        imgScale, imgScale
+                        );
+                    context.fillText(
+                        textString,
+                        2*stepWidth*i + 30 + imgScale/2 - textWidth/2,
+                        stepHeight*(i+1) + centerImgX + imgScale * i
+                        );
+                    console.log(visitedNodes);
+                }
             }
-
-
+            bfs.shift();
         }
-        
-        // Este mai ok sa le luam pe linii, primul nod fiind cel cu cele mai multe legaturi, dupa legaturile si tot asa.
+        console.log('All nodes pursuit!')
     }
 
     nodeIMG.src = 'assets/node.svg';
