@@ -49,12 +49,23 @@ function refreshValue() {
     canvasDelete();
 
     Array.from(
-        document.getElementsByClassName("con-container")[0]
+        conContainer
+        .getElementsByTagName("span"))
+        .forEach(el => el.remove());
+    
+    Array.from(
+        bfsContainer
+        .getElementsByTagName("span"))
+        .forEach(el => el.remove());
+
+    Array.from(
+        dfsContainer
         .getElementsByTagName("span"))
         .forEach(el => el.remove());
         
     Array.from(
-        document.getElementsByClassName("node-container")[0].getElementsByTagName("span"))
+        nodeContainer
+        .getElementsByTagName("span"))
         .forEach(el => el.remove());
 
     nodesName.value = '';
