@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
 }
 
 body{
@@ -12,6 +14,10 @@ body{
     justify-content: center;
 }
 
+[hidden]{
+    display: none !important;
+}
+/* Video background */
 .video-background{
     position: fixed;
     right: 0;
@@ -21,21 +27,128 @@ body{
 }
 
 .video-overlay{
-    opacity: 0.5;
+    /* opacity: 0.3; */
     position: fixed;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(45deg, rgba(38,130,168,1) 0%, rgba(145,145,148,1) 50%, rgba(11,153,215,1) 100%);
+    /* background: linear-gradient(45deg, rgba(38,130,168,1) 0%, rgba(145,145,148,1) 50%, rgba(11,153,215,1) 100%); */
+    background: rgba(255,255,255,0.15);
 }
 
 video{
     object-fit: cover;
 }
 
+/* Container */
+.container{
+    min-width: 580px;
+    min-height: 350px;
+    color: white;
+    margin: 0 auto;
+    padding: 25px 50px;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    z-index: 2;
+    background: rgba(249, 202, 36,0.9);
+}
+
+/* Form */
+.form{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+button{
+    color: white;
+    padding: 10px 25px;
+    align-self: center;
+    border-radius: 25px;
+    border: none;
+    background-color: #44bd32;
+    margin-top: max(2.5vw, 20px);
+    font-size: 18px;
+    transition: all 1s ease;
+}
+button:hover{
+    cursor: pointer;
+    background-color: purple;
+}
+label{
+    margin-top: 20px;
+    font-size: 20px;
+}
+input{
+    width: 95%;
+    font-size: 16px;
+    padding: 5px 20px;
+    border: none;
+    border-radius: 25px;
+    overflow: hidden;
+}
+
+/* Countdown */
+.countdown{
+    text-align: center;
+}
+h1{
+    font-size: 40px;
+}
+ul{
+    text-align: center;
+}
+li{
+    display: inline-block;
+    font-size: 30px;
+    list-style-type: none;
+    padding: 10px;
+    text-transform: uppercase;
+}
+
+li span{
+    display: block;
+    font-size: 50px;
+}
+/* Completed */
+.complete{
+    position: relative;
+    top: 20px;
+}
+
+.complete button{
+    margin-top: max(2.5vw, 10px);
+
+}
+
+.complete-title{
+    position: relative;
+    animation: complete 4s infinite;
+}
+
+@keyframes complete{
+    0%{
+        transform: translateX(-0.5%);
+    }
+    50%{
+        transform: translateX(20%);
+    }
+    100%{
+        transform: translateX(-0.5%);
+    }
+}
 @media screen and (max-width: 600px){
     video{
         object-position: 70%;
+    }
+    .container{
+        min-width: unset;
+        width: 95%;
+        min-height: 245px;
+        padding: 20px;
+        margin: 10px;
     }
 }
