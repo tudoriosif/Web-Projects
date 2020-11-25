@@ -1,6 +1,60 @@
-@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto&display=swap');
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    color: #FFF;
+}
+
+/* Background */
+body{
+    width: 100vw;
+    height: 100vh;
+}
+#body{
+    width: 100vw;
+    height: 100vh;
+    background-image: url('assets/bkg1.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Logo */
+.logo{
+    position: absolute;
+    left: 7%;
+    top: 5%;
+}
+.ruler{
+    position: absolute;
+    color: rgba(255,247,0,0.6);
+    width: 100%;
+}
+hr:nth-child(1){
+    top: 5%;
+}
+hr:nth-child(3){
+    z-index: 1;
+    opacity: 0.6;
+    top: 50%;
+}
+hr:nth-child(4){
+    bottom: 16%;
+}
+.logo-text{
+    z-index: 2;
+    display: flex;
+    align-items: center;
+}
+#retro-logo{
+    margin-top: 5px;
+    font-size: max(36px,3vw);
+    font-family: 'Great Vibes', sans-serif;
+    color: rgba(255,209,26,0.59);
+
+}
+#player-logo{
+    padding-left: 10px;
+    font-size: max(18px,1.5vw);
 }
