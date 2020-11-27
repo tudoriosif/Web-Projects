@@ -7,8 +7,10 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Background -->
     <div id="body">
     </div>
+    <!-- Logo -->
     <div class="logo">
         <hr class="ruler">
         <div class="logo-text">
@@ -18,6 +20,55 @@
         <hr class="ruler">
         <hr class="ruler">
     </div>
+    <!-- Hero -->
+    <div class="hero-container">
+        <div class="hero-text">
+            <h1>Fullfill</h1>
+            <div class="hero-lower">
+                <h2>Your</h2>
+                <h2>Retro desire.</h2>
+            </div>
+        </div>
+        <div class="hero-eclipse">
+            <img src="assets/hero-eclipse.svg" alt="hero eclipse">
+        </div>
+    </div>
+    <!-- Dots -->
+    <div class="dots">
+        <img src="assets/dots.svg" alt="design dots">
+    </div>
+    <!-- Media Player -->
+    <div class="media-container">
+        <div class="disk">
+            <img src="assets/disk.svg" alt="vinyl disk">
+        </div>
+        <div class="media-menu">
+            <div class="song-content">
+                <h3 id="song-name">Aisha</h3>
+                <span>-</span>
+                <h4 id="artist-name">Joki Freund Sextet</h4>
+            </div>
+            <div class="song-time">
+                <div class="play-time">
+                    <span id="curr-time">1:43</span>
+                    <span id="left-time">-2:43</span>
+                </div>
+                <div class="time-bar"></div>
+            </div>
+            <div class="control-menu">
+                <div class="control-skip">
+                    <button id="left-arrow"><img src="assets/left-arrow.svg" alt="back button"></button>
+                    <button id="play-button"><img src="assets/play-arrow.svg" alt="play button"></button>
+                    <button id="right-arrow"><img src="assets/right-arrow.svg" alt="forward button"></button>
+                </div>
+                <div class="control-volume">
+                    <button id="unmute"><img src="assets/mute.svg" alt="mute button"></button>
+                    <button id="mute"><img src="assets/volume.svg" alt="unmute button"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="background.js"></script>
     <script src="main.js"></script>
 </body>

@@ -7,6 +7,10 @@
     color: #FFF;
 }
 
+button{
+    cursor: pointer;
+}
+
 /* Background */
 body{
     width: 100vw;
@@ -20,6 +24,17 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
     transition: opacity 4s ease-out;
+}
+
+/* Dots */
+.dots{
+    position: absolute;
+    top: 6.75%;
+    right: 13%;
+}
+.dots img{
+    height: max(5px,0.5vw);
+    width: auto;
 }
 
 /* Logo */
@@ -59,4 +74,54 @@ hr:nth-child(4){
 #player-logo{
     padding-left: 10px;
     font-size: max(18px,1.5vw);
+}
+
+/* Hero */
+.hero-container{
+    position: absolute;
+    top: 18%;
+    right: 13%;
+    display: flex;
+}
+.hero-text{
+    position: absolute;
+    top: 35%;
+    left: 37%;
+    transform: translate(-50%,-50%);
+    width: max-content;
+}
+.hero-text h1{
+    font-family: 'Great Vibes', sans-serif;
+    font-weight: lighter;
+    font-size: max(54px,5vw);
+    line-height: 1.1;
+}
+.hero-lower h2{
+    font-size: max(24px, 3vw);
+    line-height: 0.8;
+    font-weight: lighter;
+}
+.hero-eclipse{
+    padding-left: 100px;
+}
+.hero-eclipse img{
+    width: 23vw;
+    height: auto;
+}
+
+/* Media Player */
+.media-container{
+    position: absolute;
+    bottom: 10%;
+    left: 7%;
+    background-color: darkblue;
+}
+.disk{
+    background-color: crimson;
+    width: max(100px,7vw);
+    height: auto;
+}
+.control-menu button{
+    border: none;
+    background: none;
 }
