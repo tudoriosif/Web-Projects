@@ -91,10 +91,10 @@ hr:nth-child(4){
 }
 label{
     padding: 20px 0px 5px 0;
-    font-size: 18px;
+    font-size: max(18px,1.4vw);
 }
 select {
-    font-size: 16px;
+    font-size: max(14px,1.2vw);
     width: 60%;
     background-color: rgba(94,94,94,0.58);
     border: none;
@@ -102,6 +102,9 @@ select {
     padding: 5px 3%;
     appearance: none;
     overflow: hidden;
+}
+select option{
+    font-size: max(14px, 1vw);
 }
 #songs{
     width: 100%;
