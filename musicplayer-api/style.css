@@ -5,10 +5,13 @@
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
     color: #FFF;
+    font-weight: lighter;
 }
 
 button{
     cursor: pointer;
+    background: none;
+    border: none;
 }
 
 /* Background */
@@ -29,11 +32,11 @@ body{
 /* Dots */
 .dots{
     position: absolute;
-    top: 6.75%;
+    top: 6.45%;
     right: 13%;
 }
 .dots img{
-    height: max(5px,0.5vw);
+    height: max(10px,0.5vw);
     width: auto;
 }
 
@@ -92,14 +95,12 @@ hr:nth-child(4){
 }
 .hero-text h1{
     font-family: 'Great Vibes', sans-serif;
-    font-weight: lighter;
     font-size: max(54px,5vw);
     line-height: 1.1;
 }
 .hero-lower h2{
     font-size: max(24px, 3vw);
     line-height: 0.8;
-    font-weight: lighter;
 }
 .hero-eclipse{
     padding-left: 100px;
@@ -114,14 +115,73 @@ hr:nth-child(4){
     position: absolute;
     bottom: 10%;
     left: 7%;
-    background-color: darkblue;
+    width: 48%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.media-menu{
+    z-index: 1;
+    position: absolute;
+    background-color: rgba(123,123,123,0.57);
+    border-radius: 25px;
+    width: calc(100% - max(100px,7vw));
+    height: auto;
+    margin-left: 11%;
+    padding: 10px 4% 0px 10%;
+}
+.song-content{
+    width: 100%;
+    height: 30px;
+    display: flex;
+    padding: 4px 5% 4px 5%;
+    align-items: center;
+    background-color: rgba(51,50,50, 0.72);
+    border-radius: 20px;
+    overflow: hidden;
+}
+.song-content span {
+    padding: 0 10px;
+}
+.song-content h4{
+    color: rgb(203,203,203);
+}
+.song-time{
+    width: 100%;
+}
+.play-time{
+    margin-top: 5px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.75rem;
+}
+.time-bar{
+    padding: 6px  0;
+    width: 100%;
+    height: 5px;
+}
+.control-menu{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.control-menu button img{
+    width: max(32px,2.5vw);
+    height: max(32px, 2.5vw);
+}
+.control-skip{
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+}
+.control-skip button{
+    padding-left: 6%;
 }
 .disk{
-    background-color: crimson;
-    width: max(100px,7vw);
+    z-index: 2;
+    width: clamp(100px,9vw, 200px);
     height: auto;
-}
-.control-menu button{
-    border: none;
-    background: none;
 }
