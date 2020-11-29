@@ -25,119 +25,36 @@
         <form action="" id="form">
             <label for="genre">Genre:</label>
             <select name="genre" id="genres" form="form">
-                <option value="0">Choose your genre...</option>
-                <option value="1">
+                <option value="0" selected>Choose your genre...</option>
+                <!-- <option value="1">
                     <div class="song">
                         <h4>So What</h4>
                         <span>-</span>
                         <h3>Miles Davis</h3>
                     </div>
-                </option>
-                <option value="2">
-                    <div class="song">
-                        <h4>So What</h4>
-                        <span>-</span>
-                        <h3>Miles Davis</h3>
-                    </div>
-                </option>
-                <option value="3">
-                    <div class="song">
-                        <h4>So What</h4>
-                        <span>-</span>
-                        <h3>Miles Davis</h3>
-                    </div>
-                </option>
-                <option value="4">
-                    <div class="song">
-                        <h4>So What</h4>
-                        <span>-</span>
-                        <h3>Miles Davis</h3>
-                    </div>
-                </option>
-                <option value="5">
-                    <div class="song">
-                        <h4>So What</h4>
-                        <span>-</span>
-                        <h3>Miles Davis</h3>
-                    </div>
-                </option>
+                </option> -->
+
             </select>
             <label for="playlist">Playlist:</label>
             <select name="playlist" id="playlist" form="form">
-                <option value="0" selected disabled>Choose your playlist...</option>
-                <option value="1">
+                <option value="0" selected>Choose your playlist...</option>
+                <!-- <option value="1">
                     <div class="song">
                         <h4>So What</h4>
                         <span>-</span>
                         <h3>Miles Davis</h3>
                     </div>
-                </option>
-                <option value="2">
-                    <div class="song">
-                        <h4>So What</h4>
-                        <span>-</span>
-                        <h3>Miles Davis</h3>
-                    </div>
-                </option>
-                <option value="3">
-                    <div class="song">
-                        <h4>So What</h4>
-                        <span>-</span>
-                        <h3>Miles Davis</h3>
-                    </div>
-                </option>
-                <option value="4">
-                    <div class="song">
-                        <h4>So What</h4>
-                        <span>-</span>
-                        <h3>Miles Davis</h3>
-                    </div>
-                </option>
-                <option value="5">
-                    <div class="song">
-                        <h4>So What</h4>
-                        <span>-</span>
-                        <h3>Miles Davis</h3>
-                    </div>
-                </option>
+                </option> -->
             </select>
-            <label for="songs">Songs:</label>
-            <select name="songs" size="5" id="songs" form="form">
-                <option value="1">
+            <label for="songs" class="sghid">Songs:</label>
+            <select name="songs" size="5" id="songs" form="form" class="sghid">
+                <!-- <option value="1">
                     <div class="song">
                         <h4>So What</h4>
                         <span>-</span>
                         <h3>Miles Davis</h3>
                     </div>
-                </option>
-                <option value="2">
-                    <div class="song">
-                        <h4>So What</h4>
-                        <span>-</span>
-                        <h3>Miles Davis</h3>
-                    </div>
-                </option>
-                <option value="3">
-                    <div class="song">
-                        <h4>So What</h4>
-                        <span>-</span>
-                        <h3>Miles Davis</h3>
-                    </div>
-                </option>
-                <option value="4">
-                    <div class="song">
-                        <h4>So What</h4>
-                        <span>-</span>
-                        <h3>Miles Davis</h3>
-                    </div>
-                </option>
-                <option value="5">
-                    <div class="song">
-                        <h4>So What</h4>
-                        <span>-</span>
-                        <h3>Miles Davis</h3>
-                    </div>
-                </option>
+                </option> -->
             </select>
         </form>
     </main>
@@ -160,7 +77,7 @@
     </div>
     <!-- Media Player -->
     <div class="media-container">
-        <div class="disk">
+        <div class="disk" id="disk">
             <img src="assets/disk.svg" alt="vinyl disk">
         </div>
         <div class="media-menu">
@@ -174,22 +91,25 @@
                     <span id="curr-time">1:43</span>
                     <span id="left-time">-2:43</span>
                 </div>
-                <div class="time-bar"></div>
+                <div class="time-bar" id="time-bar">
+                    <div class="time" id="time">
+                    </div>
+                </div>
             </div>
             <div class="control-menu">
                 <div class="control-skip">
                     <button id="left-arrow"><img src="assets/left-arrow.svg" alt="back button"></button>
-                    <button id="play-button"><img src="assets/play-arrow.svg" alt="play button"></button>
+                    <button id="play-button"><img id="play-img" src="assets/play-arrow.svg" alt="play button"></button>
                     <button id="right-arrow"><img src="assets/right-arrow.svg" alt="forward button"></button>
                 </div>
                 <div class="control-volume">
-                    <button id="unmute"><img src="assets/mute.svg" alt="mute button"></button>
-                    <button id="mute"><img src="assets/volume.svg" alt="unmute button"></button>
+                    <button id="mute"><img class="" id="mute-img" src="assets/mute.svg" alt="mute button"></button>
                 </div>
             </div>
         </div>
     </div>
     <script src="background.js"></script>
+    <script src="play.js"></script>
     <script src="main.js"></script>
 </body>
 </html>
