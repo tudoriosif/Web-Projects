@@ -1,6 +1,8 @@
 const startBtn = document.getElementById("start-button");
 const detailShow = document.getElementsByClassName("details-container")[0];
 const dfsbfsShow = document.getElementsByClassName("parse-container")[0];
+const svgContainer = document.getElementById("svg-container");
+const svg = document.getElementById("svgID");
 
 // Variabels for display nodes
 let conContainer = document.getElementsByClassName("con-container")[0];
@@ -14,7 +16,8 @@ let dfsContainer = document.getElementsByClassName("dfs-container")[0];
 
 function startGraph() {
     nodesName.value = document.getElementById("nodes").value;
-    connectionsName.value = document.getElementById("connections").value;  
+    connectionsName.value = document.getElementById("connections").value; 
+    svg.innerHTML = "" 
 
     let pred = true;
     let regNode = /^\[\w+\,(\s+\w+\,|\w+\s+\,|\w+\,)*\s*\w+\]$/gi;
@@ -66,6 +69,8 @@ function refreshValue() {
     nodesName.value = '';
     connectionsName.value = '';
     startBtn.classList.remove("correct", "wrong");
+    svgContainer.style.display = "none";
+    svg.innerHTML = ""
 
 }
 
@@ -161,10 +166,11 @@ function showDetails(nodes, conns){
         return;
     })
 
-    //Transition 
-    bdfsTransition();
+    
     //Span to HTML
     bdfsDisplay(bfs, dfs);
+    //Transition 
+    bdfsTransition();
     //Span to D3
     drawBDFS(dataBFS, dataDFS);    
 }
@@ -176,7 +182,6 @@ function bdfsTransition(){
         detailShow.style.opacity = "1";
         dfsbfsShow.style.opacity = "1";
     },450);
-    
 }
 
 function bdfsDisplay(bfs, dfs){
@@ -246,3 +251,86 @@ function DFS(adjancencyList, nodeStart, visited = new Set()){
     return Array.from(visited);
 }
 
+function drawBDFS(dataBFS, dataDFS){
+    //Showing container
+    svgContainer.style.display = "flex";
+    
+    //Initialize svg
+    let svg = d3.select("svg");
+    let width = svgContainer.clientWidth - 10;
+    let height = svgContainer.clientHeight - 10;
+
+    var simulation = d3
+            .forceSimulation(dataBFS.nodes)
+            .force(
+                "link",
+                d3
+                .forceLink(dataBFS.links)
+                .id(function(d){
+                    return d.name;
+                })
+            )
+            .force("charge", d3.forceManyBody().strength(-700))
+            .force("center", d3.forceCenter(width/2, height/2))
+            .force("link", d3.forceLink(dataBFS.links).id(d => d.name))
+            .on("tick", ticked);
+    var link = svg
+            .append("g")
+            .selectAll("line")
+            .data(dataBFS.links)
+            .enter()
+            .append("line")
+            .attr("stroke-width", function(d){
+                return 3;
+            })
+            .style("stroke", "black");
+    var node = svg
+            .append("g")
+            .selectAll("circle")
+            .data(dataBFS.nodes)
+            .enter()
+            .append("circle")
+            .attr("r", 20)
+            .attr("fill", function(d){
+                return "orange";
+            })
+            .attr("stroke", "yellow");
+    var texts = svg
+            .append("g")
+            .selectAll("text")
+            .data(dataBFS.nodes)
+            .enter()
+            .append("text")
+            .text(d => d.name);
+
+    function ticked() {
+        texts
+            .attr("x", function (d){
+                return d.x;
+            })
+            .attr("y", function (d){
+                return d.y;
+            });
+        link
+            .attr("x1", function(d){
+                return d.source.x;
+            })
+            .attr("y1", function(d){
+                return d.source.y;
+            })
+            .attr("x2", function(d){
+                return d.target.x;
+            })
+            .attr("y2", function(d){
+                return d.target.y;
+            });
+        
+        node
+            .attr("cx", function(d) {
+                return d.x;
+            })
+            .attr("cy", function(d){
+                return d.y;
+            });
+    }
+}

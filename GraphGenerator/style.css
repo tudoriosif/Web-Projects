@@ -259,6 +259,10 @@ body {
     height: 75vh;
     background-color: white;
     color: black;
+    margin-top: 50px;
+    display: none;
+    justify-content: center;
+    align-items: center;
 }
 svg{
     width: 100%;
