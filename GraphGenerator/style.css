@@ -253,14 +253,16 @@ body {
     margin: 15px 0px;
 }
 
-/* ---------- Canvas */
-canvas{
+/* Svg */
+.svg-container{
+    width: 100%;
+    height: 75vh;
     background-color: white;
-    padding: 0;
-    display: block;
-    border: none;
-
-    /* display: none; */
+    color: black;
+}
+svg{
+    width: 100%;
+    height: 100%;
 }
 
 /*  --------- Responsive */

@@ -10,9 +10,6 @@ let connectionsName = document.getElementById("connections");
 let bfsContainer = document.getElementsByClassName("bfs-container")[0];
 let dfsContainer = document.getElementsByClassName("dfs-container")[0];
 
-// Canvas Variables
-const canvas = document.querySelector("canvas");
-
 // Main functionality
 
 function startGraph() {
@@ -45,8 +42,6 @@ function refreshValue() {
         detailShow.style.display = "none";
         dfsbfsShow.style.display = "none";
     },450);
-
-    canvasDelete();
 
     Array.from(
         conContainer
@@ -111,6 +106,14 @@ function parseVars(nodesToParse, connecsToParse) {
 
 function showDetails(nodes, conns){
     const adjancencyList = new Map();
+    let dataBFS = {
+        nodes: [],
+        links: []
+    };
+    let dataDFS = {
+        nodes: [],
+        links: []
+    };
 
     nodes.forEach(item => {
         // Adding nodes to adjancencyList
@@ -142,8 +145,31 @@ function showDetails(nodes, conns){
     const bfs = BFS(adjancencyList, nodes[0]);
     const dfs = DFS(adjancencyList, nodes[0], new Set());
 
-    bdfsDisplay(bfs, dfs);
+    bfs.forEach((value, index) => {
+        if(index > 0){
+            dataBFS.links.push({'source':bfs[index-1], 'target':value})
+        }
+        dataBFS.nodes.push({'name':value});
+        return;
+    });
 
+    dfs.forEach((value, index) => {
+        if(index > 0){
+            dataDFS.links.push({'source':dfs[index-1], 'target':value})
+        }
+        dataDFS.nodes.push({'name':value});
+        return;
+    })
+
+    //Transition 
+    bdfsTransition();
+    //Span to HTML
+    bdfsDisplay(bfs, dfs);
+    //Span to D3
+    drawBDFS(dataBFS, dataDFS);    
+}
+
+function bdfsTransition(){
     detailShow.style.display = "flex";
     dfsbfsShow.style.display = "flex";
     setTimeout(()=>{
@@ -151,7 +177,6 @@ function showDetails(nodes, conns){
         dfsbfsShow.style.opacity = "1";
     },450);
     
-    canvasSetup(adjancencyList, nodes, conns, bfs);
 }
 
 function bdfsDisplay(bfs, dfs){
@@ -161,7 +186,6 @@ function bdfsDisplay(bfs, dfs){
         return;
     })
     bfsS = bfsS.slice(0, bfsS.length - 2);
-    console.log(bfsS);    
 
     let dfsS = "";
     dfs.forEach(item => {
@@ -169,7 +193,6 @@ function bdfsDisplay(bfs, dfs){
         return;
     })
     dfsS = dfsS.slice(0, dfsS.length - 2);
-    console.log(dfsS);    
 
     let bfsSpan = document.createElement("span");
     bfsSpan.appendChild(document.createTextNode(bfsS));
@@ -223,73 +246,3 @@ function DFS(adjancencyList, nodeStart, visited = new Set()){
     return Array.from(visited);
 }
 
-
-// Canvas drawing
-function canvasSetup( adjancencyList, nodes, conns, bfs) {
-    canvas.width = document.querySelector("html").offsetWidth;
-    canvas.height = innerHeight;
-    const context = canvas.getContext('2d');
-    const nodeIMG = new Image();
-    let cwid = canvas.width;
-    let chei = canvas.height;
-
-    console.log(adjancencyList);
-    
-    nodeIMG.onload = function() {
-        const imgScale = (cwid > 1500) ? ((nodes.length * 200 < chei) ? 150 : chei/(nodes.length + 3)) : cwid/(nodes.length + 1.5);
-        const centerImgX = imgScale/2;
-        let countNodes = 0;
-
-        context.font = `${imgScale/5}px Roboto`;
-        let textString = nodes[countNodes];
-        let textWidth = context.measureText(textString).width;
-
-        const stepWidth = cwid / 10;
-        const stepHeight = chei / 20;
-
-        //Drawing middle node
-        context.drawImage(nodeIMG, cwid/2 - centerImgX , stepHeight, imgScale, imgScale);
-        context.fillText(textString, cwid/2 - textWidth/2, stepHeight + centerImgX);
-
-        let visitedNodes = new Set();
-        visitedNodes.add(nodes[countNodes]);
-
-        let flag = false;
-        console.log(bfs)
-        while(visitedNodes.size !== nodes.length && flag != true) {
-            let values = bfs.length > 0 ? adjancencyList.get(bfs[0]) : flag = true;
-            console.log('Bfs[0]',bfs[0]);
-            console.log('Values:', values);
-            for(let i = 0; i < values.length; i++){
-                if(!visitedNodes.has(values[i])){
-                    console.log(values[i]);
-                    visitedNodes.add(values[i]);
-                    textString = values[i];
-                    textWidth = context.measureText(textString).width
-                    context.drawImage(
-                        nodeIMG, 
-                        2*stepWidth*i + 30,
-                        stepHeight * (i+1) + imgScale * i, 
-                        imgScale, imgScale
-                        );
-                    context.fillText(
-                        textString,
-                        2*stepWidth*i + 30 + imgScale/2 - textWidth/2,
-                        stepHeight*(i+1) + centerImgX + imgScale * i
-                        );
-                    console.log(visitedNodes);
-                }
-            }
-            bfs.shift();
-        }
-        console.log('All nodes pursuit!')
-    }
-
-    nodeIMG.src = 'assets/node.svg';
-}
-
-function canvasDelete() {
-    canvas.width = 0;
-    canvas.height = 0;
-    canvas.style.display = "none";
-}
