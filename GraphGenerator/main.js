@@ -111,15 +111,10 @@ function parseVars(nodesToParse, connecsToParse) {
 
 function showDetails(nodes, conns){
     const adjancencyList = new Map();
-    let dataBFS = {
+    let data = {
         nodes: [],
         links: []
     };
-    let dataDFS = {
-        nodes: [],
-        links: []
-    };
-
     nodes.forEach(item => {
         // Adding nodes to adjancencyList
         addNode(item, adjancencyList);
@@ -150,29 +145,21 @@ function showDetails(nodes, conns){
     const bfs = BFS(adjancencyList, nodes[0]);
     const dfs = DFS(adjancencyList, nodes[0], new Set());
 
-    bfs.forEach((value, index) => {
-        if(index > 0){
-            dataBFS.links.push({'source':bfs[index-1], 'target':value})
-        }
-        dataBFS.nodes.push({'name':value});
+    nodes.forEach((value) => {
+        let values = adjancencyList.get(value);
+        values.forEach(currentValue => {
+            data.links.push({'source':value, 'target':currentValue})
+        })
+        data.nodes.push({'name':value});
         return;
     });
-
-    dfs.forEach((value, index) => {
-        if(index > 0){
-            dataDFS.links.push({'source':dfs[index-1], 'target':value})
-        }
-        dataDFS.nodes.push({'name':value});
-        return;
-    })
-
     
     //Span to HTML
     bdfsDisplay(bfs, dfs);
     //Transition 
     bdfsTransition();
     //Span to D3
-    drawBDFS(dataBFS, dataDFS);    
+    drawGraph(data);    
 }
 
 function bdfsTransition(){
@@ -251,7 +238,7 @@ function DFS(adjancencyList, nodeStart, visited = new Set()){
     return Array.from(visited);
 }
 
-function drawBDFS(dataBFS, dataDFS){
+function drawGraph(data){
     //Showing container
     svgContainer.style.display = "flex";
     
@@ -261,36 +248,38 @@ function drawBDFS(dataBFS, dataDFS){
     let height = svgContainer.clientHeight - 10;
 
     var simulation = d3
-            .forceSimulation(dataBFS.nodes)
+            .forceSimulation(data.nodes)
             .force(
                 "link",
                 d3
-                .forceLink(dataBFS.links)
+                .forceLink(data.links)
                 .id(function(d){
                     return d.name;
                 })
+                .distance(width/5)
             )
-            .force("charge", d3.forceManyBody().strength(-700))
+            .force("charge", d3.forceManyBody().strength(-width/2))
             .force("center", d3.forceCenter(width/2, height/2))
-            .force("link", d3.forceLink(dataBFS.links).id(d => d.name))
             .on("tick", ticked);
     var link = svg
             .append("g")
             .selectAll("line")
-            .data(dataBFS.links)
+            .data(data.links)
             .enter()
             .append("line")
             .attr("stroke-width", function(d){
                 return 3;
             })
-            .style("stroke", "black");
+            .style("stroke", "white");
     var node = svg
             .append("g")
             .selectAll("circle")
-            .data(dataBFS.nodes)
+            .data(data.nodes)
             .enter()
             .append("circle")
-            .attr("r", 20)
+            .attr("r", (d, i) => {
+                return d.name.length < 5 ? 45 : d.name.length * 10;
+            })
             .attr("fill", function(d){
                 return "orange";
             })
@@ -298,10 +287,14 @@ function drawBDFS(dataBFS, dataDFS){
     var texts = svg
             .append("g")
             .selectAll("text")
-            .data(dataBFS.nodes)
+            .data(data.nodes)
             .enter()
             .append("text")
-            .text(d => d.name);
+            .text(d => d.name)
+            .attr('fill', d => 'white')
+            .attr('text-anchor', d => 'middle')
+            .attr('font-family', 'Roboto')
+            .attr('font-size', '1.5em');
 
     function ticked() {
         texts
