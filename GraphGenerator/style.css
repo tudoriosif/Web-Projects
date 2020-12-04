@@ -106,12 +106,12 @@ body {
     padding: 3px 20px;
     margin-right: 2.5vw;
     cursor: pointer;
-    transform: scale(100%);
+    transform: scale(1);
     transition: transform 0.5s cubic-bezier(0.215, 0.610, 0.355, 1);
 }
 
 .start-button:hover {
-    transform: scale(120%);
+    transform: scale(1.2);
     transition: transform 0.5s cubic-bezier(0.215, 0.610, 0.355, 1);
 }
 
@@ -285,7 +285,7 @@ svg{
     .links{
         top: 1.5vh;
         width: auto;
-        height: max(28px, 2%)o;
+        height: max(28px, 2%);
         display: flex;
         flex-wrap: wrap;
         flex-direction: row;
