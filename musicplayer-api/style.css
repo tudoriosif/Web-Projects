@@ -205,6 +205,16 @@ select option{
     background-color: #000;
     border-radius: 5px;
     transition: width 0.1s linear;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.point{
+    width: 5px;
+    height: 100%;
+    border: none;
+    border-radius: 50%;
+    background-color: white;
 }
 .control-menu{
     width: 100%;
