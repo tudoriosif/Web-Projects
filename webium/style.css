@@ -1,21 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400&family=Playfair+Display&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400&family=Playfair+Display&display=swap");
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
-a, li{
+a,
+li {
   list-style: none;
   text-decoration: none;
 }
 /* Home Page */
-.home-container{
+.home-container {
   width: 100%;
   height: 100vh;
 }
 /* Navbar */
-nav{
+nav {
   padding-top: 3vh;
   z-index: 20;
   position: fixed;
@@ -23,14 +24,18 @@ nav{
   height: 75px;
 }
 
-#logo-text{
+#logo-text {
   color: #ffffff;
-  font-family: 'Playfair Display', sans-serif;
-  font-size: max(32px, 2.5vw);
+  font-family: "Playfair Display", sans-serif;
+  font-size: max(32px, 2.35vw);
   margin-top: -10px;
 }
 
-nav ul{
+.hamburger-menu {
+  display: none;
+}
+
+nav ul {
   width: 100%;
   height: 100%;
   display: flex;
@@ -38,50 +43,106 @@ nav ul{
   align-items: center;
   padding: 0 7.5%;
 }
-.nav-links{
+.nav-links {
   transform: translateX(0);
-  animation-name: navlinks;
-  animation-duration: 3s;
+  /* animation-name: navlinks;
+  animation-duration: 3s; */
 }
 
-@keyframes navlinks{
-  from{
+@keyframes navlinks {
+  from {
     transform: translateX(-5000px);
   }
-  to{
+  to {
     transform: translateX(0);
   }
 }
 
-.nav-links li{
+.nav-links li {
   display: inline-block;
 }
-.nav-links li a{
+.nav-links li a {
   color: white;
   padding: 0 12px;
+  font-size: max(16px, 1.2vw);
 }
-.search-box{
+.search-box {
   height: 26px;
   display: flex;
   align-items: center;
 }
-.search-textbox{
+.search-textbox {
   width: 120px;
   padding: 5px 10px;
   border: none;
   border-radius: 25px 0 0 25px;
 }
-.search-icon{
+.search-icon {
   height: 100%;
   width: auto;
-  background: #707070;
+  background-color: #fff;
+  color: #000;
   display: flex;
   align-items: center;
   padding: 0 5%;
   border-radius: 0 25px 25px 0;
 }
-.search-icon{
-  color: #ffffff;
+.search-icon:hover {
+  background-color: #cacaca;
+  transition: background-color 1s ease;
+}
+
+/* Navbar responsive */
+@media only screen and (max-width: 740px) {
+  .hamburger-menu {
+    opacity: 0;
+  }
+  .hamburger-menu.show {
+    opacity: 1;
+    cursor: pointer;
+    display: block;
+    color: #fff;
+    padding-left: 4%;
+    z-index: 21;
+  }
+
+  .nav-links {
+    opacity: 0;
+    background-color: rgba(35, 35, 35, 0.4);
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 5vh;
+    width: 25%;
+    height: 100vh;
+  }
+  .nav-links.show {
+    opacity: 1;
+    animation: navlinksshow 3s;
+    animation-direction: alternate;
+  }
+  @keyframes navlinksshow {
+    from {
+      transform: translateX(-100%);
+    }
+  }
+  .search-textbox {
+    display: none;
+  }
+  .search-icon {
+    background: none;
+    color: #fff;
+    border-radius: 5px;
+  }
+  .search-icon:hover {
+    background-color: #fff;
+    color: #000;
+    transition: background-color 1s ease;
+  }
 }
 
 /* Swiper */
@@ -112,10 +173,10 @@ nav ul{
   width: 100px;
   height: 3px;
   border-radius: 5px;
-  background-color: #707070;
+  background-color: #cacaca;
 }
 .swiper-button {
   padding: 0 5%;
-  color: #a8a8a8;
+  color: #cacaca;
 }
 /* ----Home page */
