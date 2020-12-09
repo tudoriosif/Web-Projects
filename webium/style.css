@@ -24,7 +24,7 @@ nav {
   height: 75px;
 }
 
-.logo-text{
+.logo-text {
   margin-top: -10px;
 }
 
@@ -51,10 +51,10 @@ nav ul {
   animation-name: navlinks;
   animation-duration: 3s;
 }
-.nav-links li{
+.nav-links li {
   transition: transform 0.5s ease-out;
 }
-.nav-links li:hover{
+.nav-links li:hover {
   transform: scale(1.15);
 }
 @keyframes navlinks {
@@ -112,22 +112,23 @@ nav ul {
   }
   .hamburger-menu.show {
     animation: hamshow 3s;
+    animation-direction: alternate;
   }
   @keyframes hamshow {
-    from{
+    from {
       transform: rotateZ(0deg);
     }
-    50%{
+    50% {
       transform: rotateZ(180deg);
     }
-    to{
+    to {
       transform: rotateZ(0deg);
     }
   }
   .nav-links {
     background-color: rgba(35, 35, 35, 0.4);
     position: absolute;
-    left: 0;
+    left: -25%;
     top: 0;
     display: flex;
     justify-content: space-around;
@@ -136,29 +137,21 @@ nav ul {
     padding-top: 5vh;
     width: 25%;
     height: 100vh;
-    transform: translateX(-100%);
-    animation: none;
+    transition: all 0.5s linear;
   }
   .nav-links.show {
-    opacity: 1;
-    animation: navlinksshow 3s;
-    animation-fill-mode: forwards;    
-  }
-  @keyframes navlinksshow {
-    from {
-      transform: translateX(-100%);
-    }
-    to{
-      transform: translateX(0);
-    }
+    left: 0;
   }
   .search-textbox {
-    display: none;
-    font-size: max(8px,2vw);
-    width: min(80px,10vw);
+    width: 0;
+    font-size: 0;
+    padding: 0;
+    transition: all 0.5s linear;
   }
-  .search-textbox.show{
-    display: block;
+  .search-textbox.show {
+    font-size: max(8px, 2vw);
+    width: min(100px, 15vw);
+    padding: 5px 10px;
   }
   .search-icon {
     background: none;
