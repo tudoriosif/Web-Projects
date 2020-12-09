@@ -20,13 +20,15 @@
       <!-- NavBar -->
       <nav>
         <ul>
-          <div class="hamburger-menu show">
+          <!-- Responsive Menu -->
+          <div class="hamburger-menu show" id="ham-menu">
             <i class="fas fa-ellipsis-h fa-lg"></i>
           </div>
+          <!-- Logo -->
           <li class="logo">
-            <h1 id="logo-text">Webium</h1>
+            <h1 class="logo-text"><a href="javascript:void(0)">Webium</a></h1>
           </li>
-          <div class="nav-links show">
+          <div class="nav-links" id="nav-links">
             <li class="home"><a href="javascript:void(0)">Home</a></li>
             <li class="about"><a href="javascript:void(0)">About</a></li>
             <li class="price"><a href="javascript:void(0)">Pricing</a></li>
@@ -36,9 +38,10 @@
             <input
               class="search-textbox"
               type="text"
-              placeholder="Find it..."
+              id="search-textbox"
+              placeholder="Search"
             />
-            <label class="search-icon">
+            <label class="search-icon" id="search-icon">
               <i class="fas fa-search"></i>
             </label>
           </li>
