@@ -1,9 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400&family=Playfair+Display&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Archivo&display=swap");
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Montserrat", sans-serif;
 }
 a,
 li {
@@ -17,7 +17,7 @@ li {
 }
 /* Navbar */
 nav {
-  padding-top: 3vh;
+  padding-top: 5vh;
   z-index: 20;
   position: fixed;
   width: 100%;
@@ -25,7 +25,7 @@ nav {
 }
 
 .logo-text {
-  margin-top: -10px;
+  margin-top: -15px;
 }
 
 .logo-text a {
@@ -49,7 +49,7 @@ nav ul {
 .nav-links {
   transform: translateX(0);
   animation-name: navlinks;
-  animation-duration: 3s;
+  animation-duration: 1.5s;
 }
 .nav-links li {
   transition: transform 0.5s ease-out;
@@ -60,6 +60,9 @@ nav ul {
 @keyframes navlinks {
   from {
     transform: translateX(-5000px);
+  }
+  50% {
+    transform: translateX(100px);
   }
   to {
     transform: translateX(0);
@@ -72,7 +75,29 @@ nav ul {
 .nav-links li a {
   color: white;
   padding: 0 12px;
-  font-size: max(16px, 1.2vw);
+  font-size: max(16px, 1.15vw);
+  font-family: "Montserrat", sans-serif;
+}
+hr {
+  height: 0.1rem;
+  width: 20%;
+  margin-left: 1%;
+  background: #fff;
+  border: none;
+  transition: 0.3s ease-in-out;
+}
+.home:hover ~ hr {
+  margin-left: 0;
+}
+.about:hover ~ hr {
+  margin-left: 25%;
+}
+.price:hover ~ hr {
+  margin-left: 50%;
+}
+.contact:hover ~ hr {
+  width: 25%;
+  margin-left: 75%;
 }
 .search-box {
   height: 26px;
@@ -102,6 +127,12 @@ nav ul {
 
 /* Navbar responsive */
 @media only screen and (max-width: 740px) {
+  hr {
+    display: none;
+  }
+  .logo-text {
+    margin-top: -10px;
+  }
   .hamburger-menu {
     opacity: 1;
     cursor: pointer;
@@ -165,6 +196,100 @@ nav ul {
   }
 }
 
+/* Hero text */
+.hero-text {
+  z-index: 22;
+  position: absolute;
+  color: #fff;
+  top: 40%;
+  transform: translateY(-50%);
+  left: 20%;
+  font-family: "Archivo", sans-serif;
+  display: flex;
+}
+.hero-big {
+  font-size: clamp(64px, 10vw, 128px);
+  line-height: 0.8;
+  animation: herobig 2s linear;
+}
+@keyframes herobig {
+  from {
+    opacity: 0;
+    transform: translateY(500px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.hero-med {
+  font-size: clamp(22px, 3.4375vw, 44px);
+  line-height: 0.7;
+  text-align: end;
+  animation: heromed 2s linear;
+}
+@keyframes heromed {
+  from {
+    opacity: 0;
+    transform: translateX(500px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.hero-side {
+  font-size: clamp(27.5px, 4.29vw, 55px);
+  writing-mode: sideways-lr;
+  animation: heroside 2s linear;
+}
+@keyframes heroside {
+  from {
+    opacity: 0;
+    transform: translateX(-500px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.buy-btn {
+  cursor: pointer;
+  color: #fff;
+  margin-top: 20px;
+  font-size: clamp(14px, 2.5vw, 18px);
+  width: max(80px, 30%);
+  padding: 5px 5px;
+  border: #fff 2px solid;
+  border-radius: 25px;
+  background: none;
+  transition: all 0.5s linear;
+  animation: buybtn 2s linear;
+}
+.buy-btn:hover {
+  color: #000;
+  background-color: #fff;
+  border-color: #000;
+  border-width: 0.5px;
+}
+@keyframes buybtn {
+  from {
+    opacity: 0;
+    transform: rotate(-180deg);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(0deg);
+  }
+}
+@media only screen and (max-width: 740px) {
+  .hero-text {
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
 /* Swiper */
 .swiper-container {
   width: 100%;
@@ -199,4 +324,36 @@ nav ul {
   padding: 0 5%;
   color: #cacaca;
 }
+
+/* Bottom dots */
+.dots {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 99;
+  width: fit-content;
+  height: fit-content;
+}
+.dot {
+  border-radius: 50%;
+  background-color: #fff;
+  width: 6px;
+  height: 6px;
+  margin-top: 5px;
+  animation: dotanim 2s linear;
+  animation-iteration-count: infinite;
+}
+@keyframes dotanim {
+  from {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.25);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
 /* ----Home page */
