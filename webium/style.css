@@ -5,6 +5,13 @@
   padding: 0;
   box-sizing: border-box;
 }
+:root {
+  --white: #fff;
+  --black: #000;
+}
+::placeholder {
+  color: var(--black);
+}
 a,
 li {
   list-style: none;
@@ -23,13 +30,12 @@ nav {
   width: 100%;
   height: 75px;
 }
-
 .logo-text {
   margin-top: -15px;
 }
 
 .logo-text a {
-  color: #ffffff;
+  color: var(--white);
   font-family: "Playfair Display", sans-serif;
   font-size: max(32px, 2.35vw);
 }
@@ -73,7 +79,7 @@ nav ul {
   display: inline-block;
 }
 .nav-links li a {
-  color: white;
+  color: var(--white);
   padding: 0 12px;
   font-size: max(16px, 1.15vw);
   font-family: "Montserrat", sans-serif;
@@ -82,7 +88,7 @@ hr {
   height: 0.1rem;
   width: 20%;
   margin-left: 1%;
-  background: #fff;
+  background: var(--white);
   border: none;
   transition: 0.3s ease-in-out;
 }
@@ -109,12 +115,13 @@ hr {
   padding: 5px 10px;
   border: none;
   border-radius: 25px 0 0 25px;
+  background-color: var(--white);
 }
 .search-icon {
   height: 100%;
   width: auto;
-  background-color: #fff;
-  color: #000;
+  background-color: var(--white);
+  color: var(--black);
   display: flex;
   align-items: center;
   padding: 0 5%;
@@ -137,7 +144,7 @@ hr {
     opacity: 1;
     cursor: pointer;
     display: block;
-    color: #fff;
+    color: var(--white);
     padding-left: 4%;
     z-index: 21;
   }
@@ -186,16 +193,20 @@ hr {
   }
   .search-icon {
     background: none;
-    color: #fff;
+    color: var(--white);
     border-radius: 5px;
   }
   .search-icon:hover {
-    background-color: #fff;
-    color: #000;
+    background-color: var(--white);
+    color: var(--black);
     transition: background-color 1s ease;
   }
 }
-
+/* Changing colors as you scroll down*/
+.nav-scrolled {
+  --white: #000;
+  --black: #fff;
+}
 /* Hero text */
 .hero-text {
   z-index: 22;
@@ -357,3 +368,10 @@ hr {
 }
 
 /* ----Home page */
+
+/* About page */
+.about-container {
+  width: 100%;
+  height: 100vh;
+}
+/* ----about page */

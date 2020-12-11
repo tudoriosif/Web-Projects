@@ -16,40 +16,43 @@
     <title>Carousel Slider</title>
   </head>
   <body>
+    <!-- Home Page -->
     <div class="home-container">
-      <!-- NavBar -->
-      <nav>
-        <ul>
-          <!-- Responsive Menu -->
-          <div class="hamburger-menu show" id="ham-menu">
-            <i class="fas fa-ellipsis-h fa-lg"></i>
-          </div>
-          <!-- Logo -->
-          <li class="logo">
-            <h1 class="logo-text"><a href="javascript:void(0)">Webium</a></h1>
-          </li>
-          <!-- Links Menu -->
-          <div class="nav-links" id="nav-links">
-            <li class="home"><a href="javascript:void(0)">Home</a></li>
-            <li class="about"><a href="javascript:void(0)">About</a></li>
-            <li class="price"><a href="javascript:void(0)">Pricing</a></li>
-            <li class="contact"><a href="javascript:void(0)">Contact</a></li>
-            <hr />
-          </div>
-          <!-- Search Box -->
-          <li class="search-box">
-            <input
-              class="search-textbox"
-              type="text"
-              id="search-textbox"
-              placeholder="Search"
-            />
-            <label class="search-icon" id="search-icon">
-              <i class="fas fa-search"></i>
-            </label>
-          </li>
-        </ul>
-      </nav>
+      <header>
+        <!-- NavBar -->
+        <nav>
+          <ul>
+            <!-- Responsive Menu -->
+            <div class="hamburger-menu show" id="ham-menu">
+              <i class="fas fa-ellipsis-h fa-lg"></i>
+            </div>
+            <!-- Logo -->
+            <li class="logo">
+              <h1 class="logo-text"><a href="javascript:void(0)">Webium</a></h1>
+            </li>
+            <!-- Links Menu -->
+            <div class="nav-links" id="nav-links">
+              <li class="home"><a href="javascript:void(0)">Home</a></li>
+              <li class="about"><a href="javascript:void(0)">About</a></li>
+              <li class="price"><a href="javascript:void(0)">Pricing</a></li>
+              <li class="contact"><a href="javascript:void(0)">Contact</a></li>
+              <hr />
+            </div>
+            <!-- Search Box -->
+            <li class="search-box">
+              <input
+                class="search-textbox"
+                type="text"
+                id="search-textbox"
+                placeholder="Search"
+              />
+              <label class="search-icon" id="search-icon">
+                <i class="fas fa-search"></i>
+              </label>
+            </li>
+          </ul>
+        </nav>
+      </header>
       <!-- Hero Text -->
       <div class="hero-text">
         <div class="hero-left">
@@ -84,7 +87,10 @@
         <div class="dot"></div>
       </div>
     </div>
+    <!-- About page -->
+    <div class="about-container"></div>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="observer.js"></script>
     <script src="main.js"></script>
   </body>
 </html>
