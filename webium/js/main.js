@@ -1,3 +1,4 @@
+AOS.init();
 const dots = document.getElementById("ham-menu");
 const links = document.getElementById("nav-links");
 const searchBox = document.getElementById("search-textbox");
