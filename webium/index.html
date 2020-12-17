@@ -20,7 +20,7 @@
   </head>
   <body>
     <!-- Home Page -->
-    <div class="home-container">
+    <div class="home-container" id="home">
       <header>
         <!-- NavBar -->
         <nav>
@@ -31,14 +31,14 @@
             </div>
             <!-- Logo -->
             <li class="logo">
-              <h1 class="logo-text"><a href="javascript:void(0)">Webium</a></h1>
+              <h1 class="logo-text"><a href="#home">Webium</a></h1>
             </li>
             <!-- Links Menu -->
             <div class="nav-links" id="nav-links">
-              <li class="home"><a href="javascript:void(0)">Home</a></li>
-              <li class="about"><a href="javascript:void(0)">About</a></li>
-              <li class="price"><a href="javascript:void(0)">Pricing</a></li>
-              <li class="contact"><a href="javascript:void(0)">Contact</a></li>
+              <li class="home"><a href="#home">Home</a></li>
+              <li class="about"><a href="#about">About</a></li>
+              <li class="price"><a href="#pricing">Pricing</a></li>
+              <li class="contact"><a href="#contact">Contact</a></li>
               <hr />
             </div>
             <!-- Search Box -->
@@ -91,7 +91,7 @@
       </div>
     </div>
     <!-- About page -->
-    <div class="about-container">
+    <div class="about-container" id="about">
       <div class="circle-container" data-aos="fade" data-aos-duration="2000">
         <div class="main-circle">
           <video class="video-background" loop muted autoplay>
@@ -126,17 +126,31 @@
         </div>
       </div>
     </div>
-    <div class="pricing-container">
+    <!-- Pricing page -->
+    <div class="pricing-container" id="pricing">
       <div class="pricing-grid">
         <div class="grid-box one">
           <div class="pricing-text">
-            <h3 class="pricing-big-text" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000">Car pricing</h3>
-            <div class="red-line pricing" data-aos="fade-left"
-            data-aos-delay="200"
-            data-aos-duration="2000"></div>
-            <div class="pricing-small-text" data-aos="fade-right"
-            data-aos-delay="200"
-            data-aos-duration="2000">
+            <h3
+              class="pricing-big-text"
+              data-aos="fade-up"
+              data-aos-delay="100"
+              data-aos-duration="1000"
+            >
+              Car pricing
+            </h3>
+            <div
+              class="red-line pricing"
+              data-aos="fade-left"
+              data-aos-delay="200"
+              data-aos-duration="2000"
+            ></div>
+            <div
+              class="pricing-small-text"
+              data-aos="fade-right"
+              data-aos-delay="200"
+              data-aos-duration="2000"
+            >
               <p>Cars are evaluated by our experts</p>
               <p>You receive an offer in maximum 1 hour</p>
               <p>Based on current market</p>
@@ -161,14 +175,26 @@
         </div>
         <div class="grid-box four">
           <div class="pricing-text">
-            <h3 class="pricing-big-text" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000">Gadget pricing</h3>
-            <div class="red-line pricing" data-aos="fade-right"
-            data-aos-delay="200"
-            data-aos-duration="2000"></div>
-            <div class="pricing-small-text" data-aos="fade-left"
-            data-aos-delay="200"
-            data-aos-duration="2000"
-          >
+            <h3
+              class="pricing-big-text"
+              data-aos="fade-up"
+              data-aos-delay="100"
+              data-aos-duration="1000"
+            >
+              Gadget pricing
+            </h3>
+            <div
+              class="red-line pricing"
+              data-aos="fade-right"
+              data-aos-delay="200"
+              data-aos-duration="2000"
+            ></div>
+            <div
+              class="pricing-small-text"
+              data-aos="fade-left"
+              data-aos-delay="200"
+              data-aos-duration="2000"
+            >
               <p>Sell or buy any kind of gadgets</p>
               <p>Instant offer</p>
               <p>Best price on the BTC market</p>
@@ -177,6 +203,34 @@
         </div>
       </div>
     </div>
+    <!-- Contact page -->
+    <footer class="contact-container" id="contact">
+      <div class="white-line-container">
+        <div class="white-line"></div>
+      </div>
+      <div class="footer-nav-container">
+        <div class="footer-logo" data-aos="fade" data-aos-duration="2000">
+          <h3 class="logo-text"><a href="#home">Webium</a></h3>
+        </div>
+        <ul class="footer-nav" data-aos="fade-left" data-aos-duration="2000">
+          <li class="footer-link"><a href="#home">Home</a></li>
+          <li class="footer-link"><a href="#about">About</a></li>
+          <li class="footer-link"><a href="#pricing">Pricing</a></li>
+        </ul>
+      </div>
+      <div class="footer-data">
+        <ul class="footer-data-links">
+          <li>All rights reserved 2020</li>
+          <li>Cluj-Napoca, Romania</li>
+          <li>
+            <p>Tudor Iosif</p>
+            <a href="https://github.com/tudoriosif">
+              <p>https://github.com/tudoriosif</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </footer>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script src="./js/observer.js"></script>
