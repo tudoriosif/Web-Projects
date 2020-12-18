@@ -254,7 +254,8 @@ hr {
 }
 .hero-side {
   font-size: clamp(27.5px, 4.29vw, 55px);
-  writing-mode: sideways-lr;
+  writing-mode: vertical-lr;
+  transform: rotate(180deg);
   animation: heroside 2s linear;
 }
 @keyframes heroside {
