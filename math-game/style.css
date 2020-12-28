@@ -1,0 +1,88 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script&family=Yanone+Kaffeesatz&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.play-container {
+  width: 100%;
+  height: 100vh;
+  background-color: rgb(0, 0, 0);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background-image: url("./background.jpg");
+  background-position: center;
+  background-repeat: none;
+  background-size: cover;
+}
+
+.hero-text {
+  position: absolute;
+  top: 8rem;
+}
+
+.low-text {
+  font-size: clamp(64px, 7.5vw, 170px);
+  font-family: "Heebo", sans-serif;
+  letter-spacing: -10px;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1px white;
+  text-shadow: 5px 0px 0px rgba(227, 50, 209, 0.77),
+    16px 0px 9px rgba(227, 50, 209, 0.77), -8px 0px 8px rgba(227, 50, 209, 0.62),
+    0 0 20px rgba(227, 50, 209, 0.3), 0 0 30px rgba(227, 50, 209, 0.3),
+    0 0 40px rgba(227, 50, 209, 0.3), 0 0 55px rgba(227, 50, 209, 0.3),
+    0 0 75px rgba(227, 50, 209, 0.3);
+  animation: shake 10s ease 1s infinite;
+}
+@keyframes shake{
+    0%{transform: translateX(0);}
+    90%{transform: translateX(0);}
+    95%{transform: translateX(-20px);}
+    97%{transform: translateX(20px);}
+    100%{transform: translateX(0px);}
+}
+.low-text::before {
+  content: "Do";
+  font-size: clamp(35px, 4vw, 87px);
+  font-family: "Dancing Script", cursive;
+  position: absolute;
+  -webkit-text-fill-color: #fff;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  filter: brightness(1);
+  animation: flicking 7s linear 1s infinite;
+}
+@keyframes flicking {
+  0% {filter: brightness(1);}
+  3% {filter: brightness(0);}
+  6% {filter: brightness(0);}
+  7% {filter: brightness(1);}
+  9% {filter: brightness(0);}
+  10% {filter: brightness(1);}
+  100% {filter: brightness(1);}
+}
+
+.play-btn {
+  padding: 20px 75px;
+  font-family: "Press Start 2P", cursive;
+  border: none;
+  font-size: clamp(14px, 1.5vw, 40px);
+  background: none;
+  color: #fff;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #0ccafa,
+    0 0 30px #0ccafa, 0 0 40px #0ccafa, 0 0 55px #0ccafa, 0 0 75px #0ccafa;
+  cursor: pointer;
+  animation: fade-in 3s cubic-bezier(0.165, 0.84, 0.44, 1) 0.5s forwards;
+}
+@keyframes fade-in{
+    0% {transform: translateX(-500%); opacity: 0; }
+    75% {transform: translateX(50%); opacity: 1;}
+    100% {transform: translateX(0);}
+}
