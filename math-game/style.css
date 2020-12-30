@@ -55,6 +55,9 @@
 .hero-text {
   position: absolute;
   top: 8rem;
+  visibility: visible;
+  opacity: 1;
+  transition: all 1s linear;
 }
 
 .low-text {
@@ -77,6 +80,12 @@
     97%{transform: translateX(20px);}
     100%{transform: translateX(0px);}
 }
+.button-container.hide,.hero-text.hide{
+  transform: translateX(100px);
+  opacity: 0;
+  visibility: hidden;
+  animation: none;
+}
 .low-text::before {
   content: "Do";
   font-size: clamp(35px, 4vw, 87px);
@@ -97,6 +106,12 @@
   9% {filter: brightness(0);}
   10% {filter: brightness(1);}
   100% {filter: brightness(1);}
+}
+
+.button-container{
+  visibility: visible;
+  opacity: 1;
+  transition: all 1s linear;
 }
 
 .play-btn {
